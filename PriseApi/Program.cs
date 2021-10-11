@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
 using PriseApi;
 using PriseApi.Helper;
 using PriseApi.Repositories;
@@ -9,6 +12,8 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
+
+app.UseCors("ServiceOrigin");
 
 app.MapGet("/sprueche/{id}", async (SpruchRepository repo, int id) =>
 {

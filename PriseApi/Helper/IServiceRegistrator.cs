@@ -1,4 +1,6 @@
-﻿namespace PriseApi.Helper;
+﻿using Microsoft.Extensions.DependencyInjection;
+
+namespace PriseApi.Helper;
 
 public interface IServiceRegistrator
 {

@@ -1,7 +1,9 @@
-﻿using PriseApi.Helper;
+﻿using Microsoft.Extensions.DependencyInjection;
+using PriseApi.Helper;
 using PriseApi.Repositories;
 using Raven.Client.Documents;
 using Raven.Client.Documents.Session;
+using System;
 
 namespace PriseApi;
 
@@ -9,6 +11,13 @@ public class GlobalServiceRegistrator : IServiceRegistrator
 {
     public void RegisterServices(IServiceCollection serviceCollection)
     {
+        serviceCollection.AddCors(options => options.AddPolicy("ServiceOrigin", builder =>
+        {
+            builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+        }));
+
         serviceCollection.AddSingleton<IDocumentStore>(serviceProvider =>
             new DocumentStore()
             {
@@ -21,5 +30,6 @@ public class GlobalServiceRegistrator : IServiceRegistrator
 
         serviceCollection.AddScoped<SpruchRepository>();
         serviceCollection.AddScoped<Random>();
+
     }
 }

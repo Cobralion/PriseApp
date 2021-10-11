@@ -1,8 +1,12 @@
-﻿using PriseApi.Helper;
+﻿using Microsoft.Extensions.Logging;
+using PriseApi.Helper;
 using PriseApi.Models;
 using Raven.Client.Documents;
 using Raven.Client.Documents.Session;
+using System;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PriseApi.Repositories;
 public class SpruchRepository
